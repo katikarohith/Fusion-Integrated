@@ -36,69 +36,34 @@
     },
     "leave_elm": {
       "grants": {
-        "Dean": [
-          "leave_elm.application.view",
-          "leave_elm.workflow.act"
-        ],
-        "Deputy Registrar (Estt.)": [
-          "leave_elm.application.view",
-          "leave_elm.workflow.act"
-        ],
-        "Director": [
-          "leave_elm.application.view",
-          "leave_elm.workflow.act"
-        ],
         "Employee": [
           "leave_elm.application.apply",
-          "leave_elm.application.export",
           "leave_elm.application.view",
           "leave_elm.balance.view"
         ],
-        "Establishment": [
-          "leave_elm.application.view",
-          "leave_elm.workflow.act"
-        ],
-        "Leave Administrator": [
+        "Leave Admin": [
           "leave_elm.application.view",
           "leave_elm.balance.view",
-          "leave_elm.calendar.manage",
-          "leave_elm.offline.record",
-          "leave_elm.policy.manage",
-          "leave_elm.record.manage",
-          "leave_elm.sla.manage",
-          "leave_elm.year_end.process"
+          "leave_elm.policy.manage"
         ],
-        "Registrar": [
+        "Leave Approver": [
+          "leave_elm.application.approve",
           "leave_elm.application.view",
-          "leave_elm.workflow.act"
-        ],
-        "Substitute / Responsibility Holder": [
-          "leave_elm.application.view",
-          "leave_elm.substitute.respond"
-        ],
-        "Unit Head": [
-          "leave_elm.application.view",
-          "leave_elm.workflow.act"
+          "leave_elm.balance.view"
         ]
       },
       "module_grants": [
-        "Dean",
-        "Deputy Registrar (Estt.)",
-        "Director",
         "Employee",
-        "Establishment",
-        "Leave Administrator",
-        "Registrar",
-        "Substitute / Responsibility Holder",
-        "Unit Head"
+        "Leave Admin",
+        "Leave Approver"
       ],
       "nav": {
         "base_path": "/leave",
-        "icon": "FaCalendarAlt",
+        "icon": "CalendarBlank",
         "items": [
           {
             "code": "leave.apply",
-            "icon": "FaCalendarAlt",
+            "icon": "PencilSimple",
             "label": "Apply for Leave",
             "required_permission": "leave_elm.application.apply",
             "sort_order": 10,
@@ -106,90 +71,62 @@
           },
           {
             "code": "leave.mine",
-            "icon": "FaClipboardList",
-            "label": "My Leave",
+            "icon": "ListChecks",
+            "label": "My Applications",
             "required_permission": "leave_elm.application.view",
             "sort_order": 20,
             "to": "/leave/mine"
           },
           {
-            "code": "leave.balances",
-            "icon": "FaChartBar",
-            "label": "Balances and History",
+            "code": "leave.balance",
+            "icon": "Scales",
+            "label": "Leave Balance",
             "required_permission": "leave_elm.balance.view",
             "sort_order": 30,
-            "to": "/leave/balances"
+            "to": "/leave/balance"
           },
           {
-            "code": "leave.tasks",
-            "icon": "FaUserCheck",
-            "label": "Workflow Tasks",
-            "required_permission": "leave_elm.workflow.act",
-            "sort_order": 40,
-            "to": "/leave/tasks"
-          },
-          {
-            "code": "leave.admin",
-            "icon": "FaCog",
-            "label": "Leave Configuration",
-            "required_permission": "leave_elm.policy.manage",
+            "code": "leave.approvals",
+            "icon": "UserCheck",
+            "label": "Approvals",
+            "required_permission": "leave_elm.application.approve",
             "sort_order": 50,
-            "to": "/leave/admin"
+            "to": "/leave/approvals"
+          },
+          {
+            "code": "leave.types",
+            "icon": "Gear",
+            "label": "Leave Types",
+            "required_permission": "leave_elm.policy.manage",
+            "sort_order": 60,
+            "to": "/leave/types"
           }
         ],
         "label": "Leave Management",
         "nav_section": "Leave",
-        "sort_order": 30,
+        "sort_order": 20,
         "status": "active"
       },
       "permissions": [
         {
           "code": "leave_elm.application.view",
-          "label": "View own leave applications"
+          "label": "View leave applications"
         },
         {
           "code": "leave_elm.application.apply",
-          "label": "Submit and withdraw leave requests"
+          "label": "Apply for leave"
         },
         {
-          "code": "leave_elm.application.export",
-          "label": "Export own leave application"
-        },
-        {
-          "code": "leave_elm.workflow.act",
-          "label": "Act on an assigned leave workflow task"
-        },
-        {
-          "code": "leave_elm.substitute.respond",
-          "label": "Respond to substitute requests"
+          "code": "leave_elm.application.approve",
+          "label": "Approve leave applications"
         },
         {
           "code": "leave_elm.balance.view",
-          "label": "View own balances and account history"
+          "label": "View leave balances"
         },
         {
           "code": "leave_elm.policy.manage",
-          "label": "Manage leave policy, routes, and employee context"
-        },
-        {
-          "code": "leave_elm.calendar.manage",
-          "label": "Maintain and publish leave calendars"
-        },
-        {
-          "code": "leave_elm.sla.manage",
-          "label": "Configure and process workflow SLA thresholds"
-        },
-        {
-          "code": "leave_elm.record.manage",
-          "label": "Maintain authorized leave records and balances"
-        },
-        {
-          "code": "leave_elm.offline.record",
-          "label": "Synchronize already sanctioned offline leave"
-        },
-        {
-          "code": "leave_elm.year_end.process",
-          "label": "Run year-end leave-account processing"
+          "label": "Manage leave policies"
         }
       ],
       "scope_permissions": [],

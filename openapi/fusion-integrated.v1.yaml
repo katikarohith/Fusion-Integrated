@@ -63,42 +63,22 @@ paths:
               schema:
                 $ref: '#/components/schemas/UserSearchResult'
           description: ''
-  /api/v1/elm/actions:
-    get:
-      operationId: v1_elm_actions_retrieve
-      tags:
-      - v1
-      security:
-      - iamSession: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ElmActionRequestPage'
-          description: ''
-  /api/v1/elm/actions/{id}/substitute:
+  /api/v1/elm/admin/balances:
     post:
-      operationId: v1_elm_actions_substitute_create
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        required: true
+      operationId: v1_elm_admin_balances_create
       tags:
       - v1
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SubstituteInput'
+              $ref: '#/components/schemas/AllotInput'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/SubstituteInput'
+              $ref: '#/components/schemas/AllotInput'
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/SubstituteInput'
+              $ref: '#/components/schemas/AllotInput'
         required: true
       security:
       - iamSession: []
@@ -107,44 +87,24 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ActionRequest'
+                $ref: '#/components/schemas/LeaveBalance'
           description: ''
-  /api/v1/elm/actions/{id}/withdraw:
+  /api/v1/elm/admin/types:
     post:
-      operationId: v1_elm_actions_withdraw_create
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        required: true
-      tags:
-      - v1
-      security:
-      - iamSession: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ActionRequest'
-          description: ''
-  /api/v1/elm/admin/balance-adjustments:
-    post:
-      operationId: v1_elm_admin_balance_adjustments_create
+      operationId: v1_elm_admin_types_create
       tags:
       - v1
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/BalanceAdjustmentInput'
+              $ref: '#/components/schemas/LeaveTypeCreateInput'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/BalanceAdjustmentInput'
+              $ref: '#/components/schemas/LeaveTypeCreateInput'
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/BalanceAdjustmentInput'
+              $ref: '#/components/schemas/LeaveTypeCreateInput'
         required: true
       security:
       - iamSession: []
@@ -153,287 +113,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Balance'
-          description: ''
-  /api/v1/elm/admin/calendars:
-    get:
-      operationId: v1_elm_admin_calendars_list
-      tags:
-      - v1
-      security:
-      - iamSession: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Calendar'
-          description: ''
-    post:
-      operationId: v1_elm_admin_calendars_create
-      tags:
-      - v1
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CalendarInput'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/CalendarInput'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/CalendarInput'
-        required: true
-      security:
-      - iamSession: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Calendar'
-          description: ''
-  /api/v1/elm/admin/calendars/{id}/publish:
-    post:
-      operationId: v1_elm_admin_calendars_publish_create
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        required: true
-      tags:
-      - v1
-      security:
-      - iamSession: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Calendar'
-          description: ''
-  /api/v1/elm/admin/employee-profiles:
-    post:
-      operationId: v1_elm_admin_employee_profiles_create
-      tags:
-      - v1
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/EmployeeProfileInput'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/EmployeeProfileInput'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/EmployeeProfileInput'
-        required: true
-      security:
-      - iamSession: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EmployeeProfile'
-          description: ''
-  /api/v1/elm/admin/offline-leaves:
-    post:
-      operationId: v1_elm_admin_offline_leaves_create
-      tags:
-      - v1
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/OfflineLeaveInput'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/OfflineLeaveInput'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/OfflineLeaveInput'
-        required: true
-      security:
-      - iamSession: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ElmApplication'
-          description: ''
-  /api/v1/elm/admin/policies:
-    get:
-      operationId: v1_elm_admin_policies_list
-      tags:
-      - v1
-      security:
-      - iamSession: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/LeavePolicy'
-          description: ''
-    post:
-      operationId: v1_elm_admin_policies_create
-      tags:
-      - v1
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/PolicyInput'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PolicyInput'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/PolicyInput'
-        required: true
-      security:
-      - iamSession: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/LeavePolicy'
-          description: ''
-  /api/v1/elm/admin/routes:
-    get:
-      operationId: v1_elm_admin_routes_list
-      tags:
-      - v1
-      security:
-      - iamSession: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Route'
-          description: ''
-    post:
-      operationId: v1_elm_admin_routes_create
-      tags:
-      - v1
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/RouteInput'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/RouteInput'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/RouteInput'
-        required: true
-      security:
-      - iamSession: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Route'
-          description: ''
-  /api/v1/elm/admin/sla:
-    get:
-      operationId: v1_elm_admin_sla_list
-      tags:
-      - v1
-      security:
-      - iamSession: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/SlaPolicy'
-          description: ''
-    post:
-      operationId: v1_elm_admin_sla_create
-      tags:
-      - v1
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/SlaInput'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/SlaInput'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/SlaInput'
-        required: true
-      security:
-      - iamSession: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SlaPolicy'
-          description: ''
-  /api/v1/elm/admin/sla/process:
-    post:
-      operationId: v1_elm_admin_sla_process_create
-      tags:
-      - v1
-      security:
-      - iamSession: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SlaProcessResult'
-          description: ''
-  /api/v1/elm/admin/year-end:
-    post:
-      operationId: v1_elm_admin_year_end_create
-      tags:
-      - v1
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/YearEndInput'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/YearEndInput'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/YearEndInput'
-        required: true
-      security:
-      - iamSession: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/YearEndResult'
+                $ref: '#/components/schemas/LeaveType'
           description: ''
   /api/v1/elm/applications:
     get:
-      operationId: v1_elm_applications_retrieve
+      operationId: v1_elm_applications_list
       tags:
       - v1
       security:
@@ -443,7 +127,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ElmApplicationPage'
+                type: array
+                items:
+                  $ref: '#/components/schemas/LeaveApplication'
           description: ''
     post:
       operationId: v1_elm_applications_create
@@ -468,11 +154,31 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ElmApplication'
+                $ref: '#/components/schemas/LeaveApplication'
           description: ''
-  /api/v1/elm/applications/{id}/actions:
+  /api/v1/elm/applications/{id}/cancel:
     post:
-      operationId: v1_elm_applications_actions_create
+      operationId: v1_elm_applications_cancel_create
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - v1
+      security:
+      - iamSession: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LeaveApplication'
+          description: ''
+  /api/v1/elm/applications/{id}/decide:
+    post:
+      operationId: v1_elm_applications_decide_create
       parameters:
       - in: path
         name: id
@@ -485,13 +191,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ActionInput'
+              $ref: '#/components/schemas/DecisionInput'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/ActionInput'
+              $ref: '#/components/schemas/DecisionInput'
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/ActionInput'
+              $ref: '#/components/schemas/DecisionInput'
         required: true
       security:
       - iamSession: []
@@ -500,60 +206,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ActionRequest'
-          description: ''
-  /api/v1/elm/applications/{id}/export:
-    get:
-      operationId: v1_elm_applications_export_retrieve
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        required: true
-      tags:
-      - v1
-      security:
-      - iamSession: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                type: string
-                format: binary
-          description: ''
-  /api/v1/elm/applications/{id}/substitute:
-    post:
-      operationId: v1_elm_applications_substitute_create
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        required: true
-      tags:
-      - v1
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/SubstituteInput'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/SubstituteInput'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/SubstituteInput'
-        required: true
-      security:
-      - iamSession: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ElmApplication'
+                $ref: '#/components/schemas/LeaveApplication'
           description: ''
   /api/v1/elm/applications/{id}/withdraw:
     post:
@@ -573,25 +226,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ElmApplication'
+                $ref: '#/components/schemas/LeaveApplication'
           description: ''
-  /api/v1/elm/balances:
+  /api/v1/elm/applications/pending:
     get:
-      operationId: v1_elm_balances_retrieve
-      tags:
-      - v1
-      security:
-      - iamSession: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ElmBalancePage'
-          description: ''
-  /api/v1/elm/calendar:
-    get:
-      operationId: v1_elm_calendar_list
+      operationId: v1_elm_applications_pending_list
       tags:
       - v1
       security:
@@ -603,11 +242,11 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Calendar'
+                  $ref: '#/components/schemas/LeaveApplication'
           description: ''
-  /api/v1/elm/history:
+  /api/v1/elm/balance:
     get:
-      operationId: v1_elm_history_retrieve
+      operationId: v1_elm_balance_list
       tags:
       - v1
       security:
@@ -617,130 +256,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ElmLedgerPage'
-          description: ''
-  /api/v1/elm/notifications:
-    get:
-      operationId: v1_elm_notifications_retrieve
-      tags:
-      - v1
-      security:
-      - iamSession: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ElmNotificationPage'
-          description: ''
-  /api/v1/elm/notifications/{id}/read:
-    post:
-      operationId: v1_elm_notifications_read_create
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        required: true
-      tags:
-      - v1
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/NotificationReadInput'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/NotificationReadInput'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/NotificationReadInput'
-      security:
-      - iamSession: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Notification'
-          description: ''
-  /api/v1/elm/tasks:
-    get:
-      operationId: v1_elm_tasks_retrieve
-      tags:
-      - v1
-      security:
-      - iamSession: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ElmTaskPage'
-          description: ''
-  /api/v1/elm/tasks/{id}/decision:
-    post:
-      operationId: v1_elm_tasks_decision_create
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        required: true
-      tags:
-      - v1
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/TaskDecisionInput'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/TaskDecisionInput'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/TaskDecisionInput'
-        required: true
-      security:
-      - iamSession: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Task'
-          description: ''
-  /api/v1/elm/tasks/{id}/substitute-response:
-    post:
-      operationId: v1_elm_tasks_substitute_response_create
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        required: true
-      tags:
-      - v1
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/SubstituteDecisionInput'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/SubstituteDecisionInput'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/SubstituteDecisionInput'
-        required: true
-      security:
-      - iamSession: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Task'
+                type: array
+                items:
+                  $ref: '#/components/schemas/LeaveBalance'
           description: ''
   /api/v1/elm/types:
     get:
@@ -2458,112 +1976,6 @@ components:
       - semester
       - semester_type
       - user_id
-    ActionInput:
-      type: object
-      properties:
-        kind:
-          $ref: '#/components/schemas/ElmLeaveActionKind'
-        reason:
-          type: string
-          default: ''
-          maxLength: 2000
-        requested_end_date:
-          type: string
-          format: date
-          nullable: true
-        actual_resumption_date:
-          type: string
-          format: date
-          nullable: true
-        substitute_user_id:
-          type: integer
-          minimum: 1
-          nullable: true
-        medical_evidence_reference:
-          type: string
-          default: ''
-          maxLength: 300
-      required:
-      - kind
-    ActionRequest:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        application_id:
-          type: integer
-          readOnly: true
-        kind:
-          allOf:
-          - $ref: '#/components/schemas/ElmLeaveActionKind'
-          readOnly: true
-        requested_end_date:
-          type: string
-          format: date
-          readOnly: true
-          nullable: true
-        actual_resumption_date:
-          type: string
-          format: date
-          readOnly: true
-          nullable: true
-        days:
-          type: string
-          format: decimal
-          pattern: ^-?\d{0,5}(?:\.\d{0,2})?$
-          readOnly: true
-        reason:
-          type: string
-          readOnly: true
-        medical_evidence_reference:
-          type: string
-          readOnly: true
-        status:
-          allOf:
-          - $ref: '#/components/schemas/ActionRequestStatusEnum'
-          readOnly: true
-        submitted_by_user_id:
-          type: integer
-          readOnly: true
-        submitted_at:
-          type: string
-          format: date-time
-          readOnly: true
-          nullable: true
-        created_at:
-          type: string
-          format: date-time
-          readOnly: true
-      required:
-      - actual_resumption_date
-      - application_id
-      - created_at
-      - days
-      - id
-      - kind
-      - medical_evidence_reference
-      - reason
-      - requested_end_date
-      - status
-      - submitted_at
-      - submitted_by_user_id
-    ActionRequestStatusEnum:
-      enum:
-      - awaiting_substitute
-      - applicant_action_required
-      - pending_approval
-      - approved
-      - rejected
-      - withdrawn
-      type: string
-      description: |-
-        * `awaiting_substitute` - Awaiting substitute
-        * `applicant_action_required` - Applicant action required
-        * `pending_approval` - Pending approval
-        * `approved` - Approved
-        * `rejected` - Rejected
-        * `withdrawn` - Withdrawn
     AddCandidates:
       type: object
       properties:
@@ -2575,6 +1987,24 @@ components:
           minItems: 1
       required:
       - application_ids
+    AllotInput:
+      type: object
+      properties:
+        employee_id:
+          type: integer
+        leave_type_id:
+          type: integer
+        year:
+          type: integer
+          minimum: 2000
+        allotted:
+          type: integer
+          minimum: 0
+      required:
+      - allotted
+      - employee_id
+      - leave_type_id
+      - year
     Announcement:
       type: object
       properties:
@@ -2746,40 +2176,20 @@ components:
     ApplyInput:
       type: object
       properties:
-        leave_type_id:
+        leave_type:
           type: integer
-          minimum: 1
         start_date:
           type: string
           format: date
         end_date:
           type: string
           format: date
-        day_part:
-          allOf:
-          - $ref: '#/components/schemas/DayPartEnum'
-          default: full
         reason:
           type: string
           maxLength: 2000
-        station_leave_required:
-          type: boolean
-          default: false
-        station_leave_details:
-          type: string
-          default: ''
-          maxLength: 500
-        medical_evidence_reference:
-          type: string
-          default: ''
-          maxLength: 300
-        substitute_user_id:
-          type: integer
-          minimum: 1
-          nullable: true
       required:
       - end_date
-      - leave_type_id
+      - leave_type
       - reason
       - start_date
     ApplySanction:
@@ -2833,75 +2243,6 @@ components:
         * `registered` - Registered students
         * `alumni` - Alumni
         * `all` - Everyone
-    Balance:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        leave_type_code:
-          type: string
-          readOnly: true
-        leave_type_name:
-          type: string
-          readOnly: true
-        year:
-          type: integer
-          maximum: 9223372036854775807
-          minimum: 0
-          format: int64
-        allotted:
-          type: string
-          format: decimal
-          pattern: ^-?\d{0,5}(?:\.\d{0,2})?$
-        carried_forward:
-          type: string
-          format: decimal
-          pattern: ^-?\d{0,5}(?:\.\d{0,2})?$
-        used:
-          type: string
-          format: decimal
-          pattern: ^-?\d{0,5}(?:\.\d{0,2})?$
-        reserved:
-          type: string
-          format: decimal
-          pattern: ^-?\d{0,5}(?:\.\d{0,2})?$
-        adjustments:
-          type: string
-          format: decimal
-          pattern: ^-?\d{0,5}(?:\.\d{0,2})?$
-        expired:
-          type: string
-          format: decimal
-          pattern: ^-?\d{0,5}(?:\.\d{0,2})?$
-        available:
-          type: string
-          format: decimal
-          pattern: ^-?\d{0,5}(?:\.\d{0,2})?$
-          readOnly: true
-      required:
-      - available
-      - id
-      - leave_type_code
-      - leave_type_name
-      - year
-    BalanceAdjustmentInput:
-      type: object
-      properties:
-        balance_id:
-          type: integer
-          minimum: 1
-        amount:
-          type: string
-          format: decimal
-          pattern: ^-?\d{0,5}(?:\.\d{0,2})?$
-        reason:
-          type: string
-          maxLength: 500
-      required:
-      - amount
-      - balance_id
-      - reason
     BulkOutcome:
       type: object
       properties:
@@ -2954,120 +2295,6 @@ components:
       required:
       - application_ids
       - to_status
-    Calendar:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        year:
-          type: integer
-          maximum: 9223372036854775807
-          minimum: 0
-          format: int64
-        name:
-          type: string
-          maxLength: 120
-        status:
-          allOf:
-          - $ref: '#/components/schemas/CalendarStatusEnum'
-          default: draft
-        weekly_closed_days: {}
-        published_by_user_id:
-          type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
-          nullable: true
-        published_at:
-          type: string
-          format: date-time
-          nullable: true
-        dates:
-          type: array
-          items:
-            $ref: '#/components/schemas/CalendarDate'
-          readOnly: true
-        vacation_periods:
-          type: array
-          items:
-            $ref: '#/components/schemas/VacationPeriod'
-          readOnly: true
-      required:
-      - dates
-      - id
-      - name
-      - vacation_periods
-      - year
-    CalendarDate:
-      type: object
-      properties:
-        day:
-          type: string
-          format: date
-        kind:
-          $ref: '#/components/schemas/ElmCalendarDateKind'
-        label:
-          type: string
-          maxLength: 120
-      required:
-      - day
-      - kind
-    CalendarDateInput:
-      type: object
-      properties:
-        day:
-          type: string
-          format: date
-        kind:
-          $ref: '#/components/schemas/ElmCalendarDateKind'
-        label:
-          type: string
-          default: ''
-          maxLength: 120
-      required:
-      - day
-      - kind
-    CalendarInput:
-      type: object
-      properties:
-        year:
-          type: integer
-          maximum: 9999
-          minimum: 2000
-        name:
-          type: string
-          maxLength: 120
-        weekly_closed_days:
-          type: array
-          items:
-            type: integer
-            maximum: 6
-            minimum: 0
-        dates:
-          type: array
-          items:
-            $ref: '#/components/schemas/CalendarDateInput'
-        vacation_periods:
-          type: array
-          items:
-            $ref: '#/components/schemas/VacationPeriodInput'
-      required:
-      - dates
-      - name
-      - vacation_periods
-      - weekly_closed_days
-      - year
-    CalendarStatusEnum:
-      enum:
-      - draft
-      - published
-      - archived
-      type: string
-      description: |-
-        * `draft` - Draft
-        * `published` - Published
-        * `archived` - Archived
     Candidate:
       type: object
       description: A person as the ERP portal and the IAM describe them. Read-only
@@ -3124,22 +2351,6 @@ components:
       - cleared
       - message
       - user_id
-    CodeEnum:
-      enum:
-      - CL
-      - RH
-      - SCL
-      - EL
-      - COL
-      - VL
-      type: string
-      description: |-
-        * `CL` - Casual Leave
-        * `RH` - Restricted Holiday
-        * `SCL` - Special Casual Leave
-        * `EL` - Earned Leave
-        * `COL` - Commuted Leave
-        * `VL` - Vacation Leave
     Company:
       type: object
       properties:
@@ -3354,40 +2565,16 @@ components:
         * `consent_failure` - Did not appear after consenting (r19)
         * `code_of_conduct` - Code of conduct (r21)
         * `misrepresentation` - False resume or unfair means (r18)
-    CountingModeEnum:
-      enum:
-      - continuous
-      - working
-      - restricted_holiday
-      type: string
-      description: |-
-        * `continuous` - Continuous calendar days
-        * `working` - Configured working days
-        * `restricted_holiday` - Restricted holiday dates
-    DayPartEnum:
-      enum:
-      - full
-      - first_half
-      - second_half
-      type: string
-      description: |-
-        * `full` - Full day
-        * `first_half` - First half
-        * `second_half` - Second half
-    DecisionEnum:
-      enum:
+    DecisionInput:
+      type: object
+      properties:
+        approve:
+          type: boolean
+        remarks:
+          type: string
+          maxLength: 2000
+      required:
       - approve
-      - reject
-      - recommend
-      - not_recommend
-      - forward
-      type: string
-      description: |-
-        * `approve` - approve
-        * `reject` - reject
-        * `recommend` - recommend
-        * `not_recommend` - not_recommend
-        * `forward` - forward
     Detail:
       type: object
       properties:
@@ -3480,348 +2667,6 @@ components:
       - season_decision
       - semester
       - standing
-    ElmActionRequestPage:
-      type: object
-      properties:
-        next:
-          type: string
-          format: uri
-          nullable: true
-        previous:
-          type: string
-          format: uri
-          nullable: true
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/ActionRequest'
-      required:
-      - next
-      - previous
-      - results
-    ElmApplication:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        employee_user_id:
-          type: integer
-          readOnly: true
-        employee_kind:
-          allOf:
-          - $ref: '#/components/schemas/EmployeeKindEnum'
-          readOnly: true
-        leave_type_code:
-          type: string
-          readOnly: true
-        leave_type_name:
-          type: string
-          readOnly: true
-        start_date:
-          type: string
-          format: date
-          readOnly: true
-        end_date:
-          type: string
-          format: date
-          readOnly: true
-        day_part:
-          allOf:
-          - $ref: '#/components/schemas/DayPartEnum'
-          readOnly: true
-        days:
-          type: string
-          format: decimal
-          pattern: ^-?\d{0,5}(?:\.\d{0,2})?$
-          readOnly: true
-        reason:
-          type: string
-          readOnly: true
-        station_leave_required:
-          type: boolean
-          readOnly: true
-        station_leave_details:
-          type: string
-          readOnly: true
-        medical_evidence_reference:
-          type: string
-          readOnly: true
-        substitute_required:
-          type: boolean
-          readOnly: true
-        status:
-          allOf:
-          - $ref: '#/components/schemas/ElmApplicationStatusEnum'
-          readOnly: true
-        submitted_at:
-          type: string
-          format: date-time
-          readOnly: true
-          nullable: true
-        approved_at:
-          type: string
-          format: date-time
-          readOnly: true
-          nullable: true
-        approved_by_user_id:
-          type: integer
-          readOnly: true
-          nullable: true
-        origin:
-          allOf:
-          - $ref: '#/components/schemas/OriginEnum'
-          readOnly: true
-        offline_reference:
-          type: string
-          readOnly: true
-        offline_sanctioned_by_user_id:
-          type: integer
-          readOnly: true
-          nullable: true
-        offline_sanction_date:
-          type: string
-          format: date
-          readOnly: true
-          nullable: true
-        created_at:
-          type: string
-          format: date-time
-          readOnly: true
-      required:
-      - approved_at
-      - approved_by_user_id
-      - created_at
-      - day_part
-      - days
-      - employee_kind
-      - employee_user_id
-      - end_date
-      - id
-      - leave_type_code
-      - leave_type_name
-      - medical_evidence_reference
-      - offline_reference
-      - offline_sanction_date
-      - offline_sanctioned_by_user_id
-      - origin
-      - reason
-      - start_date
-      - station_leave_details
-      - station_leave_required
-      - status
-      - submitted_at
-      - substitute_required
-    ElmApplicationPage:
-      type: object
-      properties:
-        next:
-          type: string
-          format: uri
-          nullable: true
-        previous:
-          type: string
-          format: uri
-          nullable: true
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/ElmApplication'
-      required:
-      - next
-      - previous
-      - results
-    ElmApplicationStatusEnum:
-      enum:
-      - awaiting_substitute
-      - applicant_action_required
-      - pending_approval
-      - approved
-      - rejected
-      - withdrawn
-      - cancellation_pending
-      - cancelled
-      type: string
-      description: |-
-        * `awaiting_substitute` - Awaiting substitute
-        * `applicant_action_required` - Applicant action required
-        * `pending_approval` - Pending approval
-        * `approved` - Approved
-        * `rejected` - Rejected
-        * `withdrawn` - Withdrawn
-        * `cancellation_pending` - Cancellation pending
-        * `cancelled` - Cancelled
-    ElmBalancePage:
-      type: object
-      properties:
-        next:
-          type: string
-          format: uri
-          nullable: true
-        previous:
-          type: string
-          format: uri
-          nullable: true
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Balance'
-      required:
-      - next
-      - previous
-      - results
-    ElmCalendarDateKind:
-      enum:
-      - closed
-      - restricted_holiday
-      type: string
-      description: |-
-        * `closed` - Closed holiday
-        * `restricted_holiday` - Restricted holiday
-    ElmLeaveActionKind:
-      enum:
-      - cancellation
-      - extension
-      - resumption
-      type: string
-      description: |-
-        * `cancellation` - Cancellation
-        * `extension` - Extension
-        * `resumption` - Resumption
-    ElmLedgerPage:
-      type: object
-      properties:
-        next:
-          type: string
-          format: uri
-          nullable: true
-        previous:
-          type: string
-          format: uri
-          nullable: true
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Ledger'
-      required:
-      - next
-      - previous
-      - results
-    ElmNotificationPage:
-      type: object
-      properties:
-        next:
-          type: string
-          format: uri
-          nullable: true
-        previous:
-          type: string
-          format: uri
-          nullable: true
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Notification'
-      required:
-      - next
-      - previous
-      - results
-    ElmRouteStepKind:
-      enum:
-      - unit_head_final
-      - unit_head_recommendation
-      - establishment
-      - sanctioning_authority
-      - self_sanction
-      - resumption_review
-      type: string
-      description: |-
-        * `unit_head_final` - Unit Head final decision
-        * `unit_head_recommendation` - Unit Head recommendation
-        * `establishment` - Establishment processing
-        * `sanctioning_authority` - Final sanctioning authority
-        * `self_sanction` - Director self-sanction
-        * `resumption_review` - Resumption review
-    ElmTaskPage:
-      type: object
-      properties:
-        next:
-          type: string
-          format: uri
-          nullable: true
-        previous:
-          type: string
-          format: uri
-          nullable: true
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Task'
-      required:
-      - next
-      - previous
-      - results
-    ElmWorkflowTaskKind:
-      enum:
-      - unit_head_final
-      - unit_head_recommendation
-      - establishment
-      - sanctioning_authority
-      - self_sanction
-      - resumption_review
-      - substitute
-      type: string
-      description: |-
-        * `unit_head_final` - Unit Head final decision
-        * `unit_head_recommendation` - Unit Head recommendation
-        * `establishment` - Establishment processing
-        * `sanctioning_authority` - Final sanctioning authority
-        * `self_sanction` - Director self-sanction
-        * `resumption_review` - Resumption review
-        * `substitute` - Substitute consent
-    EmployeeKindEnum:
-      enum:
-      - faculty
-      - staff
-      type: string
-      description: |-
-        * `faculty` - Faculty
-        * `staff` - Non-faculty staff
-    EmployeeProfile:
-      type: object
-      properties:
-        user_id:
-          type: integer
-        unit_code:
-          type: string
-        designation:
-          type: string
-        is_director:
-          type: boolean
-      required:
-      - designation
-      - is_director
-      - unit_code
-      - user_id
-    EmployeeProfileInput:
-      type: object
-      properties:
-        user_id:
-          type: integer
-          minimum: 1
-        unit_code:
-          type: string
-          default: ''
-          maxLength: 80
-        designation:
-          type: string
-          default: ''
-          maxLength: 100
-        is_director:
-          type: boolean
-          default: false
-      required:
-      - user_id
     FeeApproval:
       type: object
       description: Rules 20 and 21 both require the challan or receipt to be produced.
@@ -4052,41 +2897,109 @@ components:
         * `in_progress` - Selection in progress
         * `completed` - Completed
         * `cancelled` - Cancelled
-    LeavePolicy:
+    LeaveApplication:
       type: object
       properties:
         id:
           type: integer
           readOnly: true
-        leave_type_code:
+        employee_id:
+          type: integer
+          readOnly: true
+        leave_type:
+          type: integer
+          readOnly: true
+        start_date:
+          type: string
+          format: date
+          readOnly: true
+        end_date:
+          type: string
+          format: date
+          readOnly: true
+        days:
+          type: integer
+          readOnly: true
+        reason:
           type: string
           readOnly: true
-        employee_kind:
-          $ref: '#/components/schemas/EmployeeKindEnum'
-        annual_entitlement:
-          type: string
-          format: decimal
-          pattern: ^-?\d{0,5}(?:\.\d{0,2})?$
-        carry_forward:
-          type: boolean
-        carry_forward_limit:
-          type: string
-          format: decimal
-          pattern: ^-?\d{0,5}(?:\.\d{0,2})?$
+        status:
+          allOf:
+          - $ref: '#/components/schemas/LeaveApplicationStatusEnum'
+          readOnly: true
+        approver_id:
+          type: integer
+          readOnly: true
           nullable: true
-        counting_mode:
-          $ref: '#/components/schemas/CountingModeEnum'
-        requires_medical_evidence:
-          type: boolean
-        requires_vacation_period:
-          type: boolean
-        is_active:
-          type: boolean
+        remarks:
+          type: string
+          readOnly: true
+        decided_at:
+          type: string
+          format: date-time
+          readOnly: true
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
       required:
-      - counting_mode
-      - employee_kind
+      - approver_id
+      - created_at
+      - days
+      - decided_at
+      - employee_id
+      - end_date
       - id
-      - leave_type_code
+      - leave_type
+      - reason
+      - remarks
+      - start_date
+      - status
+    LeaveApplicationStatusEnum:
+      enum:
+      - DRAFT
+      - SUBMITTED
+      - APPROVED
+      - REJECTED
+      - CANCELLED
+      type: string
+      description: |-
+        * `DRAFT` - Draft
+        * `SUBMITTED` - Submitted
+        * `APPROVED` - Approved
+        * `REJECTED` - Rejected
+        * `CANCELLED` - Cancelled
+    LeaveBalance:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        leave_type:
+          type: integer
+        year:
+          type: integer
+          maximum: 32767
+          minimum: 0
+        allotted:
+          type: integer
+          maximum: 32767
+          minimum: 0
+        used:
+          type: integer
+          maximum: 32767
+          minimum: 0
+        available:
+          type: integer
+          readOnly: true
+      required:
+      - allotted
+      - available
+      - id
+      - leave_type
+      - used
+      - year
     LeaveType:
       type: object
       properties:
@@ -4094,90 +3007,43 @@ components:
           type: integer
           readOnly: true
         code:
-          $ref: '#/components/schemas/CodeEnum'
+          type: string
+          maxLength: 16
         name:
           type: string
-          maxLength: 80
+          maxLength: 128
+        max_days_per_year:
+          type: integer
+          maximum: 32767
+          minimum: 0
+        requires_document:
+          type: boolean
         is_active:
           type: boolean
       required:
       - code
       - id
+      - max_days_per_year
       - name
-    LeaveTypeCodeEnum:
-      enum:
-      - CL
-      - RH
-      - SCL
-      - EL
-      - COL
-      - VL
-      type: string
-      description: |-
-        * `CL` - CL
-        * `RH` - RH
-        * `SCL` - SCL
-        * `EL` - EL
-        * `COL` - COL
-        * `VL` - VL
-    Ledger:
+    LeaveTypeCreateInput:
       type: object
       properties:
-        id:
+        code:
+          type: string
+          maxLength: 16
+        name:
+          type: string
+          maxLength: 128
+        max_days_per_year:
           type: integer
-          readOnly: true
-        leave_type_code:
-          type: string
-          readOnly: true
-        year:
-          type: integer
-          readOnly: true
-        kind:
-          $ref: '#/components/schemas/LedgerKindEnum'
-        amount:
-          type: string
-          format: decimal
-          pattern: ^-?\d{0,5}(?:\.\d{0,2})?$
-        reason:
-          type: string
-          maxLength: 500
-        created_at:
-          type: string
-          format: date-time
-          readOnly: true
+          minimum: 0
+        requires_document:
+          type: boolean
+          default: false
       required:
-      - amount
-      - created_at
-      - id
-      - kind
-      - leave_type_code
-      - year
-    LedgerKindEnum:
-      enum:
-      - credit
-      - carry
-      - reserve
-      - use
-      - release
-      - adjustment
-      - lapse
-      - conversion
-      - resumption
-      - offline
-      - cancellation
-      type: string
-      description: |-
-        * `credit` - Annual credit
-        * `carry` - Carry-forward
-        * `reserve` - Reserved
-        * `use` - Used
-        * `release` - Reservation released
-        * `adjustment` - Adjustment
-        * `lapse` - Lapsed
-        * `conversion` - Conversion
-        * `resumption` - Resumption adjustment
-        * `offline` - Offline synchronization
-        * `cancellation` - Cancellation reversal
+      - code
+      - max_days_per_year
+      - name
     LiftSanction:
       type: object
       properties:
@@ -4273,47 +3139,6 @@ components:
       - is_late
       - message
       - record
-    Notification:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        kind:
-          type: string
-          readOnly: true
-        title:
-          type: string
-          readOnly: true
-        body:
-          type: string
-          readOnly: true
-        task_id:
-          type: integer
-          readOnly: true
-        read_at:
-          type: string
-          format: date-time
-          readOnly: true
-          nullable: true
-        created_at:
-          type: string
-          format: date-time
-          readOnly: true
-      required:
-      - body
-      - created_at
-      - id
-      - kind
-      - read_at
-      - task_id
-      - title
-    NotificationReadInput:
-      type: object
-      properties:
-        read:
-          type: boolean
-          default: true
     OffCampusRecord:
       type: object
       properties:
@@ -4446,56 +3271,6 @@ components:
         * `revoked` - Revoked
         * `superseded` - Superseded
         * `expired` - Expired
-    OfflineLeaveInput:
-      type: object
-      properties:
-        employee_user_id:
-          type: integer
-          minimum: 1
-        leave_type_code:
-          $ref: '#/components/schemas/LeaveTypeCodeEnum'
-        start_date:
-          type: string
-          format: date
-        end_date:
-          type: string
-          format: date
-        day_part:
-          allOf:
-          - $ref: '#/components/schemas/DayPartEnum'
-          default: full
-        reason:
-          type: string
-          maxLength: 2000
-        station_leave_required:
-          type: boolean
-          default: false
-        station_leave_details:
-          type: string
-          default: ''
-          maxLength: 500
-        medical_evidence_reference:
-          type: string
-          default: ''
-          maxLength: 300
-        sanction_reference:
-          type: string
-          maxLength: 300
-        sanctioned_by_user_id:
-          type: integer
-          minimum: 1
-        sanction_date:
-          type: string
-          format: date
-      required:
-      - employee_user_id
-      - end_date
-      - leave_type_code
-      - reason
-      - sanction_date
-      - sanction_reference
-      - sanctioned_by_user_id
-      - start_date
     Ok:
       type: object
       properties:
@@ -4518,14 +3293,6 @@ components:
           maxLength: 300
       required:
       - season
-    OriginEnum:
-      enum:
-      - online
-      - offline
-      type: string
-      description: |-
-        * `online` - Online
-        * `offline` - Authorized offline sanction
     PaginatedAnnouncementList:
       type: object
       required:
@@ -4785,38 +3552,6 @@ components:
       - offer_letter_submitted
       - offer_letter_submitted_at
       - source
-    PolicyInput:
-      type: object
-      properties:
-        leave_type_code:
-          $ref: '#/components/schemas/LeaveTypeCodeEnum'
-        employee_kind:
-          $ref: '#/components/schemas/EmployeeKindEnum'
-        annual_entitlement:
-          type: string
-          format: decimal
-          pattern: ^-?\d{0,5}(?:\.\d{0,2})?$
-        carry_forward:
-          type: boolean
-        carry_forward_limit:
-          type: string
-          format: decimal
-          pattern: ^-?\d{0,5}(?:\.\d{0,2})?$
-          nullable: true
-        counting_mode:
-          $ref: '#/components/schemas/CountingModeEnum'
-        requires_medical_evidence:
-          type: boolean
-          default: false
-        requires_vacation_period:
-          type: boolean
-          default: false
-      required:
-      - annual_entitlement
-      - carry_forward
-      - counting_mode
-      - employee_kind
-      - leave_type_code
     ProfileDocument:
       type: object
       description: |-
@@ -5138,36 +3873,6 @@ components:
       - message
       - reason
       - route
-    RequestKindEnum:
-      enum:
-      - leave
-      - cancellation
-      - extension
-      - resumption
-      type: string
-      description: |-
-        * `leave` - New leave
-        * `cancellation` - Cancellation
-        * `extension` - Extension
-        * `resumption` - Resumption
-    ResultEnum:
-      enum:
-      - approve
-      - reject
-      - recommend
-      - not_recommend
-      - forward
-      - accept
-      - decline
-      type: string
-      description: |-
-        * `approve` - Approved
-        * `reject` - Rejected
-        * `recommend` - Recommended
-        * `not_recommend` - Not recommended
-        * `forward` - Forwarded
-        * `accept` - Accepted
-        * `decline` - Declined
     RoundOutcome:
       type: object
       properties:
@@ -5241,122 +3946,6 @@ components:
         * `absent` - Absent
         * `passed` - Passed
         * `failed` - Failed
-    Route:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        leave_type_code:
-          type: string
-          readOnly: true
-        request_kind:
-          $ref: '#/components/schemas/RequestKindEnum'
-        employee_kind:
-          $ref: '#/components/schemas/EmployeeKindEnum'
-        unit_code:
-          type: string
-          maxLength: 80
-        designation:
-          type: string
-          maxLength: 100
-        director_applicant:
-          type: boolean
-        requires_substitute:
-          type: boolean
-        is_active:
-          type: boolean
-        steps:
-          type: array
-          items:
-            $ref: '#/components/schemas/RouteStep'
-          readOnly: true
-      required:
-      - employee_kind
-      - id
-      - leave_type_code
-      - request_kind
-      - steps
-    RouteInput:
-      type: object
-      properties:
-        id:
-          type: integer
-          minimum: 1
-        leave_type_code:
-          $ref: '#/components/schemas/LeaveTypeCodeEnum'
-        request_kind:
-          $ref: '#/components/schemas/RequestKindEnum'
-        employee_kind:
-          $ref: '#/components/schemas/EmployeeKindEnum'
-        unit_code:
-          type: string
-          default: ''
-          maxLength: 80
-        designation:
-          type: string
-          default: ''
-          maxLength: 100
-        director_applicant:
-          type: boolean
-          default: false
-        requires_substitute:
-          type: boolean
-          default: false
-        steps:
-          type: array
-          items:
-            $ref: '#/components/schemas/RouteStepInput'
-      required:
-      - employee_kind
-      - leave_type_code
-      - request_kind
-      - steps
-    RouteStep:
-      type: object
-      properties:
-        sequence:
-          type: integer
-          maximum: 9223372036854775807
-          minimum: 0
-          format: int64
-        kind:
-          $ref: '#/components/schemas/ElmRouteStepKind'
-        assignee_user_id:
-          type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
-        assignee_role:
-          type: string
-          maxLength: 100
-        is_optional:
-          type: boolean
-      required:
-      - assignee_user_id
-      - kind
-      - sequence
-    RouteStepInput:
-      type: object
-      properties:
-        sequence:
-          type: integer
-          minimum: 1
-        kind:
-          $ref: '#/components/schemas/ElmRouteStepKind'
-        assignee_user_id:
-          type: integer
-          minimum: 1
-        assignee_role:
-          type: string
-          default: ''
-          maxLength: 100
-        is_optional:
-          type: boolean
-          default: false
-      required:
-      - assignee_user_id
-      - kind
     SanctionEnum:
       enum:
       - bar_next_two
@@ -5473,67 +4062,6 @@ components:
       - id
       - kind
       - username
-    SlaInput:
-      type: object
-      properties:
-        task_kind:
-          $ref: '#/components/schemas/ElmWorkflowTaskKind'
-        reminder_after_hours:
-          type: integer
-          minimum: 1
-          nullable: true
-        escalation_after_hours:
-          type: integer
-          minimum: 1
-          nullable: true
-        escalation_user_id:
-          type: integer
-          minimum: 1
-          nullable: true
-      required:
-      - task_kind
-    SlaPolicy:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        task_kind:
-          $ref: '#/components/schemas/ElmWorkflowTaskKind'
-        reminder_after_hours:
-          type: integer
-          maximum: 9223372036854775807
-          minimum: 0
-          format: int64
-          nullable: true
-        escalation_after_hours:
-          type: integer
-          maximum: 9223372036854775807
-          minimum: 0
-          format: int64
-          nullable: true
-        escalation_user_id:
-          type: integer
-          maximum: 9223372036854775807
-          minimum: -9223372036854775808
-          format: int64
-          nullable: true
-        is_active:
-          type: boolean
-          default: true
-      required:
-      - id
-      - task_kind
-    SlaProcessResult:
-      type: object
-      properties:
-        reminders:
-          type: integer
-        escalations:
-          type: integer
-      required:
-      - escalations
-      - reminders
     SourceEnum:
       enum:
       - campus
@@ -5577,125 +4105,6 @@ components:
           type: integer
       required:
       - document_id
-    SubstituteDecisionInput:
-      type: object
-      properties:
-        accept:
-          type: boolean
-        note:
-          type: string
-          default: ''
-          maxLength: 1000
-      required:
-      - accept
-    SubstituteInput:
-      type: object
-      properties:
-        nominee_user_id:
-          type: integer
-          minimum: 1
-      required:
-      - nominee_user_id
-    Task:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        application_id:
-          type: integer
-          nullable: true
-          readOnly: true
-        action_request_id:
-          type: integer
-          nullable: true
-          readOnly: true
-        employee_user_id:
-          type: integer
-          readOnly: true
-        leave_type_code:
-          type: string
-          readOnly: true
-        action_kind:
-          type: string
-          readOnly: true
-        kind:
-          allOf:
-          - $ref: '#/components/schemas/ElmWorkflowTaskKind'
-          readOnly: true
-        assignee_role:
-          type: string
-          readOnly: true
-        status:
-          allOf:
-          - $ref: '#/components/schemas/TaskStatusEnum'
-          readOnly: true
-        result:
-          allOf:
-          - $ref: '#/components/schemas/ResultEnum'
-          readOnly: true
-        note:
-          type: string
-          readOnly: true
-        assigned_at:
-          type: string
-          format: date-time
-          readOnly: true
-          nullable: true
-        activated_at:
-          type: string
-          format: date-time
-          readOnly: true
-          nullable: true
-        due_at:
-          type: string
-          format: date-time
-          readOnly: true
-          nullable: true
-        completed_at:
-          type: string
-          format: date-time
-          readOnly: true
-          nullable: true
-      required:
-      - action_kind
-      - action_request_id
-      - activated_at
-      - application_id
-      - assigned_at
-      - assignee_role
-      - completed_at
-      - due_at
-      - employee_user_id
-      - id
-      - kind
-      - leave_type_code
-      - note
-      - result
-      - status
-    TaskDecisionInput:
-      type: object
-      properties:
-        decision:
-          $ref: '#/components/schemas/DecisionEnum'
-        note:
-          type: string
-          default: ''
-          maxLength: 2000
-      required:
-      - decision
-    TaskStatusEnum:
-      enum:
-      - queued
-      - pending
-      - completed
-      - cancelled
-      type: string
-      description: |-
-        * `queued` - Queued
-        * `pending` - Pending
-        * `completed` - Completed
-        * `cancelled` - Cancelled
     TopicEnum:
       enum:
       - drive
@@ -5812,44 +4221,6 @@ components:
             $ref: '#/components/schemas/UserRef'
       required:
       - results
-    VacationPeriod:
-      type: object
-      properties:
-        start_date:
-          type: string
-          format: date
-        end_date:
-          type: string
-          format: date
-        label:
-          type: string
-          maxLength: 120
-        source_reference:
-          type: string
-          maxLength: 200
-      required:
-      - end_date
-      - start_date
-    VacationPeriodInput:
-      type: object
-      properties:
-        start_date:
-          type: string
-          format: date
-        end_date:
-          type: string
-          format: date
-        label:
-          type: string
-          default: ''
-          maxLength: 120
-        source_reference:
-          type: string
-          default: ''
-          maxLength: 200
-      required:
-      - end_date
-      - start_date
     WaiveIncident:
       type: object
       properties:
@@ -5866,32 +4237,6 @@ components:
           maxLength: 300
       required:
       - reason
-    YearEndInput:
-      type: object
-      properties:
-        year:
-          type: integer
-          maximum: 9999
-          minimum: 2000
-      required:
-      - year
-    YearEndResult:
-      type: object
-      properties:
-        year:
-          type: integer
-        status:
-          type: string
-        summary: {}
-        completed_at:
-          type: string
-          format: date-time
-          nullable: true
-      required:
-      - completed_at
-      - status
-      - summary
-      - year
   securitySchemes:
     iamSession:
       type: apiKey
