@@ -13,6 +13,23 @@ For the intended taxonomy of modules not yet built, see
 |---|---|---|
 | `directory.user.search` | Search the institute directory | `Dean Academic`, `acadadmin`, `placement_chairman`, `placement_coordinator`, `placement_officer` |
 
+## `leave_elm`
+
+| Code | What it allows | Held by |
+|---|---|---|
+| `leave_elm.application.view` | View own leave applications | `Dean`, `Deputy Registrar (Estt.)`, `Director`, `Employee`, `Establishment`, `Leave Administrator`, `Registrar`, `Substitute / Responsibility Holder`, `Unit Head` |
+| `leave_elm.application.apply` | Submit and withdraw leave requests | `Employee` |
+| `leave_elm.application.export` | Export own leave application | `Employee` |
+| `leave_elm.workflow.act` | Act on an assigned leave workflow task | `Dean`, `Deputy Registrar (Estt.)`, `Director`, `Establishment`, `Registrar`, `Unit Head` |
+| `leave_elm.substitute.respond` | Respond to substitute requests | `Substitute / Responsibility Holder` |
+| `leave_elm.balance.view` | View own balances and account history | `Employee`, `Leave Administrator` |
+| `leave_elm.policy.manage` | Manage leave policy, routes, and employee context | `Leave Administrator` |
+| `leave_elm.calendar.manage` | Maintain and publish leave calendars | `Leave Administrator` |
+| `leave_elm.sla.manage` | Configure and process workflow SLA thresholds | `Leave Administrator` |
+| `leave_elm.record.manage` | Maintain authorized leave records and balances | `Leave Administrator` |
+| `leave_elm.offline.record` | Synchronize already sanctioned offline leave | `Leave Administrator` |
+| `leave_elm.year_end.process` | Run year-end leave-account processing | `Leave Administrator` |
+
 ## `placement_cell`
 
 | Code | What it allows | Held by |
